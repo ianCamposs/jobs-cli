@@ -41,6 +41,12 @@ class Database {
     return data
   }
 
+  //pegar o objeto e comparar com ele!
+  async showJobById(id) {
+    let data = await this.receiveDataFile() 
+    let jobsFiltereds = data.filter(job => (id ? (job.idJob === id) : true))
+    return jobsFiltereds
+  }
 }
 
 module.exports = new Database()
