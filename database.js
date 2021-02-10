@@ -7,7 +7,7 @@ class Database {
   }
 
   async receiveDataFile() {
-    const file = await readFileSync(this.FILE_NAME, 'utf8')
+    let file = await readFileSync(this.FILE_NAME, 'utf8')
     return JSON.parse(file.toString())
   }
 
@@ -17,23 +17,28 @@ class Database {
   }
 
   async registerJob(job) {
-    const data = await this.receiveDataFile()
-    const idJob = Date.now();
+    let data = await this.receiveDataFile()
+    let idJob = Date.now();
 
     //adding a id to object Job
-    const jobWithId = {
+    let jobWithId = {
       idJob,
       ...job
     }
 
     //adding the object job into the string of jobs 
-    const jobResult = [
+    let jobResult = [
       ...data,
       jobWithId
     ]
 
-    const result = await this.writeDataInFile(jobResult)
+    let result = await this.writeDataInFile(jobResult)
     return result
+  }
+
+  async showAllJobs() {
+    let data = await this.receiveDataFile()
+    return data
   }
 
 }
