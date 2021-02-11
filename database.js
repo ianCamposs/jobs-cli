@@ -41,10 +41,18 @@ class Database {
     return data
   }
 
-  //pegar o objeto e comparar com ele!
-  async showJobById(id) {
-    let data = await this.receiveDataFile() 
-    let jobsFiltereds = data.filter(job => (id ? (job.idJob === id) : true))
+  async showJobByTechnologie( tec = 'tecnologie') {
+    let data = await this.receiveDataFile()
+    let filter = data.filter(function(job){
+      const result = job.technologies.toLowerCase().indexOf(tec) !== -1
+      return result
+    })
+    
+    //aplying the over function in all objetcs of document Json
+    let jobsFiltereds = filter.map(function(job) {
+      return job
+    })
+    console.log(jobsFiltereds)
     return jobsFiltereds
   }
 }

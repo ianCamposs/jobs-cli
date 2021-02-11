@@ -6,7 +6,7 @@ const exampleJob = {
   title: 'Back End with Node.js working in Amazon',
   locale: 'remote',
   payment: '100000',
-  technologies: 'Node, java'
+  technologies: 'linux, node, java, javascript, AWS, python, docker'
 }
 
 describe('Units Tests for CRUD of jobs using files', function() {
@@ -25,9 +25,13 @@ describe('Units Tests for CRUD of jobs using files', function() {
     assert.deepStrictEqual(result, expected)
   })
 
-  it('Teste case 3: Show jobs by technology selected', async() => {
-    let expected = exampleJob
-    let [result] = await database.showJobById(exampleJob.idJob)
+  it('Test case 3: Show Jobs by technology', async() => {
+    let expected = {"idJob":1612905452338,
+                    "title":"Back End with Node.js working in Amazon",
+                    "locale":"remote",
+                    "payment":"100000",
+                    "technologies":"Node, java, javascript, AWS"}
+    let [result] = await database.showJobByTechnologie('node')
     
     assert.deepStrictEqual(result, expected)
   })
