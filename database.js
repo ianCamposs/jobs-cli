@@ -66,33 +66,11 @@ class Database {
 
     //Checks if the gives id was not found in json
     if(index === -1) {
-      throw Error('job was not registered')
+    throw Error('job was not registered')
     }
 
     data.splice(index, 1)
     return await this.writeDataInFile(data)
-  }
-
-  async updateJobById(id, changes) {
-    let data = await this.receiveDataFile()
-    let index = data.findIndex(job => job.idJob === parseInt(id))
-
-    if(index === -1) {
-      throw Error('job was not registered')
-    }
-
-    let currentJob = data[index]
-
-    let updatedJob = {
-      ...currentJob,
-      ...changes
-    }
-
-    data.splice(index, 1)
-    return await this.writeDataInFile([
-      ...data,
-      updatedJob
-    ])
   }
 }
 
