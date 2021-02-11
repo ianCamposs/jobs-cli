@@ -35,4 +35,15 @@ describe('Units Tests for CRUD of jobs using files', function() {
     
     assert.deepStrictEqual(result, expected)
   })
+
+  it.only('Test case 4: Remove a job selected by your ID', async() => {
+    let expected = {"idJob":1613013517054,
+                    "title":"Back End with Node.js working in Amazon",
+                    "locale":"remote",
+                    "payment":"100000",
+                    "technologies":"linux, node, java, javascript, AWS, python, docker"}
+    let remover = await database.deleteJobById(exampleJob.idJob)
+    let [result] = await database.showAllJobs()
+    assert.deepStrictEqual(result, expected)
+  })
 })

@@ -47,13 +47,30 @@ class Database {
       const result = job.technologies.toLowerCase().indexOf(tec) !== -1
       return result
     })
-    
+
     //aplying the over function in all objetcs of document Json
     let jobsFiltereds = filter.map(function(job) {
       return job
     })
     console.log(jobsFiltereds)
     return jobsFiltereds
+  }
+
+  async deleteJobById(id) {
+    if (!id) {
+      throw Error('id was not informed')
+    }
+
+    let data = await this.receiveDataFile()
+    let index = data.findIndex(job => job.idJob === parseInt(id))
+
+    //Checks if the gives id was not found in json
+    if(index === -1) {
+    throw Error('job was not registered')
+    }
+
+    data.splice(index, 1)
+    return await this.writeDataInFile(data)
   }
 }
 
