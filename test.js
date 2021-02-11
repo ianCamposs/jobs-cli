@@ -36,7 +36,7 @@ describe('Units Tests for CRUD of jobs using files', function() {
     assert.deepStrictEqual(result, expected)
   })
 
-  it.only('Test case 4: Remove a job selected by your ID', async() => {
+  it('Test case 4: Remove a job by your ID', async() => {
     let expected = {"idJob":1613013517054,
                     "title":"Back End with Node.js working in Amazon",
                     "locale":"remote",
@@ -44,6 +44,27 @@ describe('Units Tests for CRUD of jobs using files', function() {
                     "technologies":"linux, node, java, javascript, AWS, python, docker"}
     let remover = await database.deleteJobById(exampleJob.idJob)
     let [result] = await database.showAllJobs()
+
+    assert.deepStrictEqual(result, expected)
+  })
+
+  it.only('test case 5: Update a job by your ID', async() => {
+    let expected = {
+      idJob: 1612905452338,
+      title: 'Working in enterprise with Next.js',
+      locale: 'office 322',
+      payment: '100000',
+      technologies: 'linux, node, java, javascript, AWS, python, docker'
+    }
+                    
+    let newData = {
+      "title": 'Working in enterprise with Next.js',
+      "locale": 'office 322'
+    }                
+
+    let update = await database.updateJobById(exampleJob.idJob, newData)
+    let [result] = await database.showAllJobs()
+
     assert.deepStrictEqual(result, expected)
   })
 })
