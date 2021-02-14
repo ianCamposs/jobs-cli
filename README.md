@@ -18,7 +18,7 @@ The tecnic to code chosen was TDD(test driven develpoment), first creating tests
 I'm using Mocha to work with units test in the program.
 
 <h4> 
-	🚧  Jobs-CLI 🚀 developing...  🚧
+	🚀 Jobs-CLI Finished 🚀
 </h4>
 
 :tada: I hope you enjoy my journey :tada:
